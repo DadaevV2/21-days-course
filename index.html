@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21 день — Путь развития</title>
+    
+    <meta name="description" content="21-дневный курс саморазвития с научным подходом. Глубокие практики, вечерние отчёты, персональный ИИ-анализ прогресса.">
+    <meta property="og:title" content="21 день — Путь развития">
+    <meta property="og:description" content="Измени себя за 21 день: наука + практика + персональный анализ">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- ИНТРО -->
+        <div id="introScreen" class="screen">
+            <div class="intro-container">
+                <button id="helloBtn" class="hello-btn">Привет</button>
+                <div class="subtle-hint">нажми, чтобы начать</div>
+            </div>
+        </div>
+
+        <!-- ВОПРОС -->
+        <div id="questionScreen" class="screen">
+            <div class="question-container" id="questionContainer">
+                <div class="question-text">Хочешь узнать на что ты способен?</div>
+                <div class="click-hint">✦ нажми в любом месте ✦</div>
+            </div>
+        </div>
+
+        <!-- РЕГИСТРАЦИЯ -->
+        <div id="registerScreen" class="screen">
+            <div class="container">
+                <div class="logo">21</div>
+                <h1>Курс развития</h1>
+                <p class="subtitle">21 день, чтобы изменить себя</p>
+                
+                <form id="registerForm">
+                    <div class="input-group">
+                        <label for="userName">Ваше имя</label>
+                        <input type="text" id="userName" placeholder="Как тебя зовут?" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="userEmail">Email</label>
+                        <input type="email" id="userEmail" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="courseSelect">Выбери свой курс</label>
+                        <select id="courseSelect" class="course-select">
+                            <option value="strength">💪 Сила личности</option>
+                            <option value="mindfulness">🧘 Осознанность</option>
+                            <option value="fear">🦁 Преодоление страха</option>
+                            <option value="discipline">⚡ Дисциплина и привычки</option>
+                            <option value="goals">🎯 Цели и выбор</option>
+                            <option value="emotions">💖 Эмоциональный интеллект</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn primary full">Начать путь</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- КАБИНЕТ -->
+        <div id="dashboardScreen" class="screen">
+            <div class="container">
+                <div class="dash-header">
+                    <div class="user-info">
+                        <span class="greeting">Привет, <span id="displayName">Друг</span></span>
+                        <span id="courseBadge" class="course-badge">💪 Сила личности</span>
+                        <span class="day-badge">День <span id="currentDay">1</span> / 21</span>
+                    </div>
+                    <div class="header-actions">
+                        <button id="themeToggle" class="btn ghost small" title="Сменить тему">🌓</button>
+                        <button id="logoutBtn" class="btn ghost small">Выйти</button>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-bar-bg">
+                        <div id="progressFill" class="progress-bar-fill"></div>
+                    </div>
+                    <div id="progressText" class="progress-text">0%</div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="statReports">0</div>
+                        <div class="stat-label">Отчётов</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="statChars">0</div>
+                        <div class="stat-label">Символов</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="statStreak">0%</div>
+                        <div class="stat-label">Последовательность</div>
+                    </div>
+                </div>
+
+                <!-- УТРО -->
+                <div class="stage-card morning-card">
+                    <div class="stage-header">
+                        <span class="stage-icon">🌅</span>
+                        <span class="stage-name">Утро — Настройка</span>
+                        <span id="morningStatus" class="stage-status">⏳</span>
+                    </div>
+                    <div id="morningContent" class="morning-content">
+                        <div id="morningPlaceholder" class="morning-placeholder">
+                            Нажми кнопку, чтобы получить утреннюю практику
+                        </div>
+                        <div id="morningDeep" class="morning-deep" style="display:none;">
+                            <div class="concept-block">
+                                <div class="concept-label">💡 Концепция дня</div>
+                                <div id="morningConcept" class="concept-text"></div>
+                            </div>
+                            <div class="science-block">
+                                <div class="science-label">🔬 Наука</div>
+                                <div id="morningScience" class="science-text"></div>
+                            </div>
+                            <div class="practice-block">
+                                <div class="practice-label">🎯 Практика на сегодня</div>
+                                <div id="morningPractice" class="practice-text"></div>
+                            </div>
+                            <div class="quote-block">
+                                <div id="morningQuote" class="quote-text"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="morningBtn" class="btn secondary">Получить утреннюю практику</button>
+                </div>
+
+                <!-- ДЕНЬ -->
+                <div class="stage-card day-card">
+                    <div class="stage-header">
+                        <span class="stage-icon">☀️</span>
+                        <span class="stage-name">День — Вопрос</span>
+                        <span id="dayStatus" class="stage-status">⏳</span>
+                    </div>
+                    <div id="dayContent" class="day-content">
+                        <div id="dayPlaceholder" class="day-placeholder">
+                            Нажми, чтобы получить вопрос для рефлексии
+                        </div>
+                        <div id="dayDeep" class="day-deep" style="display:none;">
+                            <div class="question-block">
+                                <div class="question-label">🤔 Вопрос дня</div>
+                                <div id="dayQuestion" class="question-text-deep"></div>
+                            </div>
+                            <div class="micro-block">
+                                <div class="micro-label">⚡ Микро-практика</div>
+                                <div id="dayMicro" class="micro-text"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="dayBtn" class="btn secondary">Получить вопрос</button>
+                </div>
+
+                <!-- ВЕЧЕР -->
+                <div class="stage-card evening-card">
+                    <div class="stage-header">
+                        <span class="stage-icon">🌙</span>
+                        <span class="stage-name">Вечер — Отчёт</span>
+                        <span id="eveningStatus" class="stage-status">⏳</span>
+                    </div>
+                    <div id="eveningQuestion" class="evening-question">Что ты вынес из сегодняшнего дня?</div>
+                    <textarea id="eveningReport" rows="4" placeholder="Опиши свой опыт, инсайты, чувства..."></textarea>
+                    <button id="eveningBtn" class="btn secondary">Отправить отчёт</button>
+                </div>
+
+                <!-- ИСТОРИЯ -->
+                <div class="history-section">
+                    <h3>📜 Мои отчёты</h3>
+                    <div id="reportsList">
+                        <p class="empty-history">Пока нет отчётов. Заполни вечерний блок.</p>
+                    </div>
+                </div>
+
+                <!-- РЕЗЕРВНАЯ КОПИЯ -->
+                <div class="backup-section">
+                    <h3>💾 Резервная копия</h3>
+                    <div class="backup-buttons">
+                        <button id="exportBtn" class="btn secondary small">📥 Экспорт данных</button>
+                        <button id="importBtn" class="btn secondary small">📤 Импорт данных</button>
+                    </div>
+                </div>
+
+                <!-- ФИНАЛЬНЫЙ АНАЛИЗ -->
+                <div id="finalResult" class="final-result" style="display:none;">
+                    <h2>🎉 Твой персональный анализ</h2>
+                    <div id="analysisText" class="analysis-box"></div>
+                </div>
+
+                <p class="footnote">Три задания в день. Каждый вечер — осознанный отчёт.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
